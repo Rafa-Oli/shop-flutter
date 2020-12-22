@@ -7,9 +7,12 @@ class Products with ChangeNotifier {
 
   List<Product> _items = DUMMY_PRODUCTS;
 
-  List<Product> get items => [
-        ..._items
-      ]; // vai retornar a copia dos dados, para que não tenha perca o controle dos dados
+// vai retornar a copia dos dados, para que não tenha perca o controle dos dados
+  List<Product> get items => [..._items];
+
+  List<Product> get favoriteItems {
+    return _items.where((prod) => prod.isFavorite).toList();
+  }
 
   void addProduct(Product product) {
     _items.add(product);
