@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/cart.dart';
+import 'package:shop/utils/app_routes.dart';
 import '../widgets/product_grid.dart';
 import '../widgets/badge.dart';
 
@@ -50,7 +51,9 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 Icons.shopping_cart,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.CART);
+              },
             ),
             builder: (_, cart, child) => Badge(
               value: cart.itemCount.toString(),
@@ -59,7 +62,7 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
           )
         ],
         title: Text(
-          'Minha Loja',
+          'My store',
         ),
         centerTitle: true,
       ),
