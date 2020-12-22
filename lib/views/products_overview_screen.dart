@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/providers/cart.dart';
 import '../widgets/product_grid.dart';
+import '../widgets/badge.dart';
 
 enum FilterOptions { Favorite, All }
 
@@ -26,7 +29,10 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
                 }
               });
             },
-            icon: Icon(Icons.more_vert),
+            icon: Icon(
+              Icons.more_vert,
+              color: Colors.white,
+            ),
             itemBuilder: (_) => [
               PopupMenuItem(
                 child: Text('Somente Favoritos'),
@@ -38,8 +44,22 @@ class _ProductOverviewScreenState extends State<ProductOverviewScreen> {
               ),
             ],
           ),
+          Consumer<Cart>(
+            builder: (ctx, cart, _) => Badge(
+              value: cart.itemCount.toString(),
+              child: IconButton(
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                  ),
+                  onPressed: () {}),
+            ),
+          )
         ],
-        title: Text('Minha Loja'),
+        title: Text(
+          'Minha Loja',
+        ),
+        centerTitle: true,
       ),
       body: ProductGrid(_showFavoriteOnly),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/product.dart';
+import '../providers/cart.dart';
 
 import '../utils/app_routes.dart';
 
@@ -8,6 +9,8 @@ class ProductItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Product product = Provider.of<Product>(context,
+        listen: false); //listen: quer continuar escutando as mudanças
+    final Cart cart = Provider.of<Cart>(context,
         listen: false); //listen: quer continuar escutando as mudanças
 
     return ClipRRect(
@@ -47,7 +50,9 @@ class ProductItem extends StatelessWidget {
                 Icons.shopping_cart,
                 color: Theme.of(context).accentColor,
               ),
-              onPressed: () {}),
+              onPressed: () {
+                cart.addItem(product);
+              }),
         ),
       ),
     );
