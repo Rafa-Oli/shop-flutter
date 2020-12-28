@@ -9,7 +9,7 @@ class Product with ChangeNotifier {
   bool isFavorite;
 
   Product(
-      {@required this.id,
+      {this.id,
       @required this.description,
       @required this.imageUrl,
       this.isFavorite = false,

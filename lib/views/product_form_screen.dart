@@ -1,7 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shop/providers/product.dart';
+import 'package:shop/providers/products.dart';
 import '../providers/products.dart';
 
 class ProductFormScreen extends StatefulWidget {
@@ -24,7 +24,18 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
   }
 
   void _updateImageUrl() {
-    setState(() {});
+    if (isValidImageUrl(_imageUrlController.text)) {
+      setState(() {});
+    }
+  }
+
+  bool isValidImageUrl(String url) {
+    bool isValidProtocol = url.toLowerCase().startsWith('http://') ||
+        url.toLowerCase().startsWith('https://');
+    bool endWithPng = url.toLowerCase().endsWith('.png');
+    bool endWithJpg = url.toLowerCase().endsWith('.jpg');
+    bool endWithJpeg = url.toLowerCase().endsWith('.jpeg');
+    return (isValidProtocol) && (endWithPng || endWithJpg || endWithJpeg);
   }
 
   @override
@@ -46,12 +57,14 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     _form.currentState
         .save(); // com o metodo save ele dispara o onSaved em cada um dos TextForm
     final newProduct = Product(
-      id: Random().nextDouble().toString(),
       title: _formData['title'],
       price: _formData['price'],
       description: _formData['description'],
       imageUrl: _formData['imageUrl'],
     );
+
+    Provider.of<Products>(context, listen: false).addProduct(newProduct);
+    Navigator.of(context).pop(); //volta para a tela anterior
   }
 
   @override
@@ -85,11 +98,10 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 },
                 onSaved: (value) => _formData['title'] = value,
                 validator: (value) {
-                  if (value.trim().isEmpty) {
+                  bool isEmpty = value.trim().isEmpty;
+                  bool isInvalid = value.trim().length < 3;
+                  if (isEmpty || isInvalid) {
                     return 'Enter a valid title!';
-                  }
-                  if (value.trim().length < 3) {
-                    return 'Enter a title with at least 3 letters!';
                   }
                   return null;
                 },
@@ -105,6 +117,15 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                   FocusScope.of(context).requestFocus(_descriptionFocusNode);
                 },
                 onSaved: (value) => _formData['price'] = double.parse(value),
+                validator: (value) {
+                  bool isEmpty = value.trim().isEmpty;
+                  var newPrice = double.tryParse(value);
+                  bool isInvalid = newPrice == null || newPrice <= 0;
+                  if (isEmpty || isInvalid) {
+                    return 'Please provide a valid price!';
+                  }
+                  return null;
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Description'),
@@ -112,6 +133,14 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 keyboardType: TextInputType.multiline,
                 focusNode: _descriptionFocusNode,
                 onSaved: (value) => _formData['description'] = value,
+                validator: (value) {
+                  bool isEmpty = value.trim().isEmpty;
+                  bool isInvalid = value.trim().length < 10;
+                  if (isEmpty || isInvalid) {
+                    return 'Please provide a valid description!';
+                  }
+                  return null;
+                },
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -127,6 +156,14 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                         _saveForm();
                       },
                       onSaved: (value) => _formData['imageUrl'] = value,
+                      validator: (value) {
+                        bool isEmpty = value.trim().isEmpty;
+                        bool isInvalid = !isValidImageUrl(value);
+                        if (isEmpty || isInvalid) {
+                          return 'Enter a valid URL!';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Container(
