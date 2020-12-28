@@ -10,6 +10,8 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
   final _descriptionFocusNode = FocusNode();
   final _imageUrlFocusNode = FocusNode();
   final _imageUrlController = TextEditingController();
+  final _form = GlobalKey<FormState>(); // estado do formulario
+  final _formData = Map<String, Object>();
 
   @override
   void initState() {
@@ -30,15 +32,32 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
     _imageUrlFocusNode.dispose();
   }
 
+  void _saveForm() {
+    _form.currentState
+        .save(); // com o metodo save ele dispara o onSaved em cada um dos TextForm
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Product form'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.save,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              _saveForm();
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Form(
+          key: _form,
           child: ListView(
             children: [
               TextFormField(
@@ -47,6 +66,7 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_priceFocusNode);
                 },
+                onSaved: (value) => _formData['title'] = value,
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Price'),
@@ -58,12 +78,14 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                 onFieldSubmitted: (_) {
                   FocusScope.of(context).requestFocus(_descriptionFocusNode);
                 },
+                onSaved: (value) => _formData['price'] = double.parse(value),
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Description'),
                 maxLines: 3,
                 keyboardType: TextInputType.multiline,
                 focusNode: _descriptionFocusNode,
+                onSaved: (value) => _formData['description'] = value,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -75,6 +97,10 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                       textInputAction: TextInputAction.done,
                       focusNode: _imageUrlFocusNode,
                       controller: _imageUrlController,
+                      onFieldSubmitted: (_) {
+                        _saveForm();
+                      },
+                      onSaved: (value) => _formData['imageUrl'] = value,
                     ),
                   ),
                   Container(
