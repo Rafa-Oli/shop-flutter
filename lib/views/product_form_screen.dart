@@ -37,6 +37,12 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
   }
 
   void _saveForm() {
+    var isValid = _form.currentState.validate();
+
+    if (!isValid) {
+      return;
+    }
+
     _form.currentState
         .save(); // com o metodo save ele dispara o onSaved em cada um dos TextForm
     final newProduct = Product(
@@ -78,6 +84,15 @@ class _ProductFormScreenState extends State<ProductFormScreen> {
                   FocusScope.of(context).requestFocus(_priceFocusNode);
                 },
                 onSaved: (value) => _formData['title'] = value,
+                validator: (value) {
+                  if (value.trim().isEmpty) {
+                    return 'Enter a valid title!';
+                  }
+                  if (value.trim().length < 3) {
+                    return 'Enter a title with at least 3 letters!';
+                  }
+                  return null;
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Price'),
