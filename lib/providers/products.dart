@@ -30,4 +30,17 @@ class Products with ChangeNotifier {
     ));
     notifyListeners(); // notifica todos os interessados da mudança
   }
+
+  void updateProduct(Product product) {
+    if (product == null || product.id == null) {
+      return;
+    }
+    //retorna o index
+    final index = _items.indexWhere((element) => element.id == product.id);
+
+    if (index >= 0) {
+      _items[index] = product;
+      notifyListeners();
+    }
+  }
 }
