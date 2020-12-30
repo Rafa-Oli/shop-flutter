@@ -25,7 +25,8 @@ class Products with ChangeNotifier {
   void addProduct(Product newProduct) {
     const url =
         'https://flutter-rafa-default-rtdb.firebaseio.com/products.json';
-    http.post(
+    http
+        .post(
       url,
       body: json.encode({
         'title': newProduct.title,
@@ -34,16 +35,17 @@ class Products with ChangeNotifier {
         'imageUrl': newProduct.imageUrl,
         'isFavorite': newProduct.isFavorite,
       }),
-    );
-
-    _items.add(Product(
-      id: Random().nextDouble().toString(),
-      title: newProduct.title,
-      description: newProduct.description,
-      price: newProduct.price,
-      imageUrl: newProduct.imageUrl,
-    ));
-    notifyListeners(); // notifica todos os interessados da mudança
+    )
+        .then((value) {
+      _items.add(Product(
+        id: json.decode(value.body)['name'],
+        title: newProduct.title,
+        description: newProduct.description,
+        price: newProduct.price,
+        imageUrl: newProduct.imageUrl,
+      ));
+      notifyListeners(); // notifica todos os interessados da mudança
+    });
   }
 
   void updateProduct(Product product) {
