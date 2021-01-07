@@ -22,10 +22,10 @@ class Products with ChangeNotifier {
     return _items.length;
   }
 
-  void addProduct(Product newProduct) {
+  Future<void> addProduct(Product newProduct) {
     const url =
         'https://flutter-rafa-default-rtdb.firebaseio.com/products.json';
-    http
+    return http
         .post(
       url,
       body: json.encode({
