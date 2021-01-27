@@ -10,6 +10,7 @@ class ProductItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scaffold = Scaffold.of(context);
     return ListTile(
       leading: CircleAvatar(
         backgroundImage: NetworkImage(product.imageUrl),
@@ -48,13 +49,20 @@ class ProductItem extends StatelessWidget {
                           child: Text('Yes'))
                     ],
                   ),
-                ).then((value) => {
-                      if (value)
-                        {
-                          Provider.of<Products>(context, listen: false)
-                              .deleteProduct(product.id)
-                        }
-                    });
+                ).then((value) async {
+                  if (value) {
+                    try {
+                      await Provider.of<Products>(context, listen: false)
+                          .deleteProduct(product.id);
+                    } catch (error) {
+                      scaffold.showSnackBar(
+                        SnackBar(
+                          content: Text(error.toString()),
+                        ),
+                      );
+                    }
+                  }
+                });
               },
             ),
           ],

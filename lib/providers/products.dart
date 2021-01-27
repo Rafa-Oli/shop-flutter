@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop/exceptions/http_exception.dart';
 import 'product.dart';
 
 class Products with ChangeNotifier {
@@ -101,6 +102,7 @@ class Products with ChangeNotifier {
         //se der erro, insere novamente
         _items.insert(index, product);
         notifyListeners();
+        throw HttpException("Ocorreu um erro na exclusão do produto.");
       }
     }
   }
