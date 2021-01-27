@@ -86,11 +86,22 @@ class Products with ChangeNotifier {
     }
   }
 
-  void deleteProduct(String id) {
+  Future<void> deleteProduct(String id) async {
     final index = _items.indexWhere((element) => element.id == id);
     if (index >= 0) {
-      _items.removeWhere((element) => element.id == id);
+      final product = _items[index];
+      //remove produto localmente
+      _items.remove(product);
       notifyListeners();
+
+      //excluindo no fire
+      final response = await http.delete("$_baseUrl/${product.id}.json");
+
+      if (response.statusCode >= 400) {
+        //se der erro, insere novamente
+        _items.insert(index, product);
+        notifyListeners();
+      }
     }
   }
 }
