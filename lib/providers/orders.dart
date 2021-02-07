@@ -34,6 +34,37 @@ class Orders with ChangeNotifier {
     return _items.length;
   }
 
+  Future<void> loadOrders() async {
+    List<Order> loadedItems = [];
+    final response = await http.get("$_baseUrl.json");
+    Map<String, dynamic> data = json.decode(response.body);
+
+    if (data != null) {
+      data.forEach((orderId, orderData) {
+        loadedItems.add(
+          Order(
+            id: orderId,
+            total: orderData['total'],
+            date: DateTime.parse(orderData['date']),
+            products: (orderData['products'] as List<dynamic>).map((item) {
+              return CartItem(
+                id: item['id'],
+                price: item['price'],
+                productId: item['productId'],
+                quantity: item['quantity'],
+                title: item['title'],
+              );
+            }).toList(),
+          ),
+        );
+      });
+      notifyListeners();
+    }
+    _items = loadedItems.reversed
+        .toList(); //coloca na ordem inversa, dos mais atuais para mais velhos
+    return Future.value();
+  }
+
   Future<void> addOrder(Cart cart) async {
     final date = DateTime.now();
 
