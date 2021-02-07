@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
+import 'package:shop/utils/constants.dart';
 
 import 'cart.dart';
 
@@ -20,8 +21,7 @@ class Order {
 
 //controla todos os pedidos dentro d aplicação
 class Orders with ChangeNotifier {
-  final String _baseUrl =
-      'https://flutter-rafa-default-rtdb.firebaseio.com/products/orders';
+  final String _baseUrl = '${Constants.BASE_API_URL}/products/orders';
   List<Order> _items = [];
 
   List<Order> get items {
