@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:shop/widgets/auth_card.dart';
 
 class AuthScreen extends StatelessWidget {
   @override
@@ -27,6 +28,7 @@ class AuthScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
+                margin: EdgeInsets.only(bottom: 20.0),
                 padding: EdgeInsets.symmetric(vertical: 8, horizontal: 70),
                 transform: Matrix4.rotationZ(-8 * pi / 180)..translate(-10.0),
                 // '..' cascade operator
@@ -50,6 +52,7 @@ class AuthScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              AuthCard(),
             ],
           ),
         ),
