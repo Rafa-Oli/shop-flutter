@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop/providers/auth.dart';
 
 enum AuthMode { Signup, Login }
 
@@ -8,12 +10,47 @@ class AuthCard extends StatefulWidget {
 }
 
 class _AuthCardState extends State<AuthCard> {
+  GlobalKey<FormState> _form = GlobalKey();
+  bool _isLoading = false;
   AuthMode _authMode = AuthMode.Login;
   final _passwordController = TextEditingController();
 
   final Map<String, String> _authData = {'email': '', 'password': ''};
 
-  void _submit() {}
+  Future<void> _submit() async {
+    if (!_form.currentState.validate()) {
+      return;
+    }
+    setState(() {
+      _isLoading = true;
+    });
+
+    _form.currentState
+        .save(); //vai chamar o onSave de cada campo e setar os valores
+
+    Auth auth = Provider.of(context, listen: false);
+
+    if (_authMode == AuthMode.Login) {
+    } else {
+      await auth.signup(_authData['email'], _authData['password']);
+    }
+
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  void _switchAuthMode() {
+    if (_authMode == AuthMode.Login) {
+      setState(() {
+        _authMode = AuthMode.Signup;
+      });
+    } else {
+      setState(() {
+        _authMode = AuthMode.Login;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +59,15 @@ class _AuthCardState extends State<AuthCard> {
       elevation: 8.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       child: Container(
-        height: 320,
+        height: _authMode == AuthMode.Login ? 290 : 371,
         padding: EdgeInsets.all(16.0),
         width: deviceSize.width * 0.75,
         child: Form(
+          key: _form,
           child: Column(
             children: [
               TextFormField(
-                decoration: InputDecoration(labelText: 'E-mail'),
+                decoration: InputDecoration(labelText: 'Email'),
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value.isEmpty || !value.contains('@')) {
@@ -40,7 +78,7 @@ class _AuthCardState extends State<AuthCard> {
                 onSaved: (value) => _authData['email'] = value,
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Senha'),
+                decoration: InputDecoration(labelText: 'Password'),
                 controller: _passwordController,
                 obscureText: true, //troca por asterisco
                 validator: (value) {
@@ -54,7 +92,6 @@ class _AuthCardState extends State<AuthCard> {
               if (_authMode == AuthMode.Signup)
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Confirm password'),
-                  controller: _passwordController,
                   obscureText: true, //troca por asterisco
                   validator: _authMode == AuthMode.Signup
                       ? (value) {
@@ -64,21 +101,29 @@ class _AuthCardState extends State<AuthCard> {
                           return null;
                         }
                       : null,
-                  onSaved: (value) => _authData['password'] = value,
                 ),
-              SizedBox(
-                height: 20,
+              Spacer(),
+              if (_isLoading)
+                CircularProgressIndicator()
+              else
+                RaisedButton(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  color: Theme.of(context).primaryColor,
+                  textColor: Colors.white,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
+                  child:
+                      Text(_authMode == AuthMode.Login ? 'LOGIN' : 'REGISTER'),
+                  onPressed: _submit,
+                ),
+              FlatButton(
+                onPressed: _switchAuthMode,
+                child: Text(
+                    'SWITCH TO ${_authMode == AuthMode.Login ? 'REGISTER' : 'LOGIN'}'),
+                textColor: Theme.of(context).primaryColor,
               ),
-              RaisedButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                color: Theme.of(context).primaryColor,
-                textColor: Colors.white,
-                padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 8.0),
-                child: Text(_authMode == AuthMode.Login ? 'LOGIN' : 'REGISTER'),
-                onPressed: _submit,
-              )
             ],
           ),
         ),

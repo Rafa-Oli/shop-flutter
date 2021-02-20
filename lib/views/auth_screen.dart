@@ -13,8 +13,8 @@ class AuthScreen extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromRGBO(215, 117, 255, 0.5),
-                Color.fromRGBO(255, 188, 117, 0.9),
+                Color.fromRGBO(600, 500, 400, 0.5), //215, 117, 255, 0.5
+                Color.fromRGBO(700, 200, 200, 0.9),
               ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
@@ -34,7 +34,7 @@ class AuthScreen extends StatelessWidget {
                 // '..' cascade operator
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: Colors.deepOrange.shade900,
+                  color: Colors.blue,
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 8,
