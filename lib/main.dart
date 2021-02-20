@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
               headline6: TextStyle(color: Colors.white),
             ),
           ),
-          home: ProductOverviewScreen(),
+          // home: ProductOverviewScreen(),
           routes: {
             AppRoutes.AUTH: (ctx) => AuthScreen(),
             AppRoutes.HOME: (ctx) => ProductOverviewScreen(),
