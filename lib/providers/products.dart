@@ -11,6 +11,9 @@ class Products with ChangeNotifier {
   //observable, vai notificar mudanças
 
   List<Product> _items = [];
+  String _token;
+
+  Products(this._token, this._items);
 
 // vai retornar a copia dos dados, para que não tenha perca o controle dos dados
   List<Product> get items => [..._items];
@@ -24,7 +27,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> loadProducts() async {
-    final response = await http.get("$_baseUrl.json");
+    final response = await http.get("$_baseUrl.json?auth=$_token");
     Map<String, dynamic> data = json.decode(response.body);
     _items.clear();
 
