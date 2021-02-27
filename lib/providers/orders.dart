@@ -26,7 +26,9 @@ class Orders with ChangeNotifier {
 
   List<Order> _items = [];
 
-  Orders(this._token, this._items);
+  Orders(
+      [this._token,
+      this._items = const []]); // usando '[]' os atributos se tornam opcionais
 
   List<Order> get items {
     return [..._items];
