@@ -9,7 +9,6 @@ class Products with ChangeNotifier {
   final String _baseUrl = '${Constants.BASE_API_URL}/products';
 
   //observable, vai notificar mudanças
-
   List<Product> _items = [];
   String _token;
 
@@ -55,7 +54,6 @@ class Products with ChangeNotifier {
         'description': newProduct.description,
         'price': newProduct.price,
         'imageUrl': newProduct.imageUrl,
-        'isFavorite': newProduct.isFavorite,
       }),
     );
     _items.add(Product(
