@@ -122,16 +122,13 @@ class _AuthCardState extends State<AuthCard>
     return Card(
       elevation: 8.0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-      child: AnimatedBuilder(
-        animation: _heightAnimation,
-        builder: (ctx, child) => Container(
-          // height: _authMode == AuthMode.Login ? 290 : 371,
-          height:
-              _heightAnimation.value.height, //vai ter altura de forma animada
-          padding: EdgeInsets.all(16.0),
-          width: deviceSize.width * 0.75,
-          child: child,
-        ),
+      child: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+        height: _authMode == AuthMode.Login ? 290 : 371,
+        // height: _heightAnimation.value.height, //vai ter altura de forma animada
+        padding: EdgeInsets.all(16.0),
+        width: deviceSize.width * 0.75,
         child: Form(
           key: _form,
           child: Column(
