@@ -18,7 +18,8 @@ class _AuthCardState extends State<AuthCard>
   final _passwordController = TextEditingController();
 
   AnimationController _controller;
-  Animation<Size> _heightAnimation;
+  Animation<double> _opacityAnimation;
+  Animation<Offset> _slideAnimation;
 
   @override
   void initState() {
@@ -30,10 +31,22 @@ class _AuthCardState extends State<AuthCard>
         milliseconds: 300,
       ),
     );
-    _heightAnimation = Tween(
+
+    _opacityAnimation = Tween(
             // entre duas coisas
-            begin: Size(double.infinity, 290),
-            end: Size(double.infinity, 371))
+            begin: 0.0,
+            end: 1.0)
+        .animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.linear,
+      ),
+    );
+
+    _slideAnimation = Tween<Offset>(
+            // entre duas coisas
+            begin: Offset(0, -1.5),
+            end: Offset(0, 0))
         .animate(
       CurvedAnimation(
         parent: _controller,
@@ -156,19 +169,34 @@ class _AuthCardState extends State<AuthCard>
                 },
                 onSaved: (value) => _authData['password'] = value,
               ),
-              if (_authMode == AuthMode.Signup)
-                TextFormField(
-                  decoration: InputDecoration(labelText: 'Confirm password'),
-                  obscureText: true, //troca por asterisco
-                  validator: _authMode == AuthMode.Signup
-                      ? (value) {
-                          if (value != _passwordController.text) {
-                            return 'Different passwords!';
-                          }
-                          return null;
-                        }
-                      : null,
+              AnimatedContainer(
+                //vai zerar o tamanho se tiver invisivel
+                constraints: BoxConstraints(
+                  minHeight: _authMode == AuthMode.Signup ? 60 : 0,
+                  maxHeight: _authMode == AuthMode.Signup ? 120 : 0,
                 ),
+                duration: Duration(milliseconds: 300),
+                curve: Curves.linear,
+                child: FadeTransition(
+                  opacity: _opacityAnimation,
+                  child: SlideTransition(
+                    position: _slideAnimation, //deslocamento
+                    child: TextFormField(
+                      decoration:
+                          InputDecoration(labelText: 'Confirm password'),
+                      obscureText: true, //troca por asterisco
+                      validator: _authMode == AuthMode.Signup
+                          ? (value) {
+                              if (value != _passwordController.text) {
+                                return 'Different passwords!';
+                              }
+                              return null;
+                            }
+                          : null,
+                    ),
+                  ),
+                ),
+              ),
               Spacer(),
               if (_isLoading)
                 CircularProgressIndicator()
