@@ -12,14 +12,23 @@
 <center>
   <table>
     <tr>
-        <td><img width="400px" align="left" src="https://imgur.com/PlFGoae.jpeg" /></td>
-        <td><img width="400px" align="left" src="https://imgur.com/2tPiQUp.jpeg" /></td>
-    </tr>  
+        <td><img width="450px" align="left" src="https://imgur.com/PlFGoae.jpeg" /></td>
+        <td><img width="450px" align="left" src="https://imgur.com/2tPiQUp.jpeg" /></td>
+    </tr> 
   </table>
 </center>
 
 
 - [x] *Store and product registration*
+
+<center>
+  <table>
+    <tr>
+        <td><img height="450" align="left" src="https://imgur.com/lIV27Ee.jpeg" /></td>
+        <td><img width="400px" align="left" src="https://imgur.com/j2lgfz1.jpeg" /></td>
+    </tr> 
+  </table>
+</center>
 
 <img height="450" align="center" src="https://imgur.com/lIV27Ee.jpeg" alt="projeto"/>  <img height="450" align="center" src="https://imgur.com/j2lgfz1.jpeg" alt="projeto"/>  
 
