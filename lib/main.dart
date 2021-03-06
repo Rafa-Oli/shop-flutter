@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop/providers/auth.dart';
+import 'package:shop/utils/custom_route.dart';
 import 'package:shop/views/auth_home_screen.dart';
 import 'package:shop/views/auth_screen.dart';
 import 'package:shop/views/cart_screen.dart';
@@ -49,6 +50,12 @@ class MyApp extends StatelessWidget {
             fontFamily: 'Lato',
             primaryTextTheme: TextTheme(
               headline6: TextStyle(color: Colors.white),
+            ),
+            pageTransitionsTheme: PageTransitionsTheme(
+              builders: {
+                TargetPlatform.android: CustomPageTransitionsBuilder(),
+                TargetPlatform.iOS: CustomPageTransitionsBuilder(),
+              },
             ),
           ),
           // home: ProductOverviewScreen(),
