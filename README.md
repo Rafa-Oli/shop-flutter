@@ -5,9 +5,9 @@
 
 
 
-*Application with the purpose of working with product creation and management. Using Firebase for authentication and data persistence improvements*
+ *Application with the purpose of working with product creation and management. Using Firebase for authentication and data persistence improvements*
 
-- [x] *Login and Registration using animation (FadeTransition to use opacity and SliderTransition)*
+-  ###  *Login and Registration using animation (FadeTransition to use opacity and SliderTransition)*
 
 <center>
   <table>
@@ -19,7 +19,7 @@
 </center>
 
 
-- [x] <h2> *Store and product registration* </h2>
+- ### *Store and product registration*
 
 <center>
   <table>
@@ -32,7 +32,7 @@
 
 
 
-- <h2> Drawer for product management</h2>
+- ### *Drawer for product management*
 
 <center>
   <table>
@@ -46,7 +46,7 @@
 
 
 
-- [x] Cart
+- ## *Cart*
 <center>
   <table>
     <tr>
