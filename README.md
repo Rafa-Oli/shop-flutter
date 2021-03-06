@@ -19,7 +19,7 @@
 </center>
 
 
-- [x] *Store and product registration*
+- [x] <h2> *Store and product registration* </h2>
 
 <center>
   <table>
@@ -32,7 +32,7 @@
 
 
 
- -[x]<h2>Drawer for product management</h2>
+- <h2> Drawer for product management</h2>
 
 <center>
   <table>
