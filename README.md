@@ -32,7 +32,7 @@
 
 
 
- - [x] <h2> Drawer for product management </h2>
+ - [x]<h2>Drawer for product management </h2>
 
 <center>
   <table>
