@@ -46,7 +46,7 @@
 
 
 
-- ## *Cart*
+- ## *Cart and Orders*
 <center>
   <table>
     <tr>
