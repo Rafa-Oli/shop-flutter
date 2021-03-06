@@ -1,16 +1,12 @@
-# shop
+![stacks](https://img.shields.io/badge/Flutter-2.0.0-blue) ![stacks](https://img.shields.io/badge/Dart-2.12.0-blue)  
 
-A new Flutter project.
 
-## Getting Started
+<i><h1 align="center"> Shop :dollar:</h1></i>
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+*Application with the purpose of working with product creation and management. Using Firebase for authentication and data persistence improvements*
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [x] Login e Inscrição
+
+<img height="450" align="center" src="https://imgur.com/PlFGoae.jpeg" alt="projeto"/>  <img height="450" align="center" src="https://imgur.com/2tPiQUp.jpeg" alt="projeto"/> 
