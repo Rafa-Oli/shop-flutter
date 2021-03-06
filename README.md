@@ -17,4 +17,9 @@
 
 
 - [x] Drawer for product management
-<img height="450" align="center" src="https://imgur.com/tUk4TLi.jpeg" alt="projeto"/>
+
+<img height="450" align="center" src="https://imgur.com/tUk4TLi.jpeg" alt="projeto"/>  <img height="450" align="center" src="https://imgur.com/5Xfwd0m.jpeg" alt="projeto"/> <img height="450" align="center" src="https://imgur.com/7lfIQgj.jpeg" alt="projeto"/> 
+
+
+- [x] Cart
+<img height="450" align="center" src="https://imgur.com/890od6O.jpeg" alt="projeto"/>
