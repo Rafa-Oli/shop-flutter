@@ -13,9 +13,11 @@ class ProductItem extends StatelessWidget {
     final scaffold = Scaffold.of(context);
     return ListTile(
       leading: CircleAvatar(
-        backgroundImage: NetworkImage(product.imageUrl),
+        backgroundImage: product.imageUrl != null
+            ? NetworkImage(product.imageUrl)
+            : AssetImage('assets/images/product-placeholder.png'),
       ),
-      title: Text(product.title),
+      title: Text(product.title ?? 'default value'),
       trailing: Container(
         width: 100,
         child: Row(

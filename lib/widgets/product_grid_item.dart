@@ -30,7 +30,9 @@ class ProductItem extends StatelessWidget {
             tag: product.id,
             child: FadeInImage(
               placeholder: AssetImage('assets/images/product-placeholder.png'),
-              image: NetworkImage(product.imageUrl),
+              image: product.imageUrl != null
+                  ? NetworkImage(product.imageUrl)
+                  : AssetImage('assets/images/product-placeholder.png'),
               fit: BoxFit.cover,
             ),
           ),
@@ -48,10 +50,12 @@ class ProductItem extends StatelessWidget {
               },
             ),
           ),
-          title: Text(
-            product.title,
-            textAlign: TextAlign.center,
-          ),
+          title: product.title != null
+              ? Text(
+                  product.title,
+                  textAlign: TextAlign.center,
+                )
+              : Text(''),
           trailing: IconButton(
               icon: Icon(
                 Icons.shopping_cart,
