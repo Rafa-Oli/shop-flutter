@@ -17,4 +17,4 @@
 
 
 - [x] Drawer for product management
-<img height="450" align="center" src="https://imgur.com/lIV27Ee.jpeg" alt="projeto"/>
+<img height="450" align="center" src="https://imgur.com/tUk4TLi.jpeg" alt="projeto"/>
