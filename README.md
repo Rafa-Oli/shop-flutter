@@ -24,19 +24,36 @@
 <center>
   <table>
     <tr>
-        <td><img height="450" align="left" src="https://imgur.com/lIV27Ee.jpeg" /></td>
+        <td><img width="400px" align="left" src="https://imgur.com/lIV27Ee.jpeg" /></td>
         <td><img width="400px" align="left" src="https://imgur.com/j2lgfz1.jpeg" /></td>
     </tr> 
   </table>
 </center>
 
-<img height="450" align="center" src="https://imgur.com/lIV27Ee.jpeg" alt="projeto"/>  <img height="450" align="center" src="https://imgur.com/j2lgfz1.jpeg" alt="projeto"/>  
 
 
-- [x] Drawer for product management
+ - [x] <h2> Drawer for product management </h2>
 
-<img height="450" align="center" src="https://imgur.com/tUk4TLi.jpeg" alt="projeto"/>  <img height="450" align="center" src="https://imgur.com/5Xfwd0m.jpeg" alt="projeto"/> <img height="450" align="center" src="https://imgur.com/7lfIQgj.jpeg" alt="projeto"/> 
+<center>
+  <table>
+    <tr>
+        <td><img width="400px" align="left" src="https://imgur.com/tUk4TLi.jpeg" /></td>
+        <td><img width="400px" align="left" src="https://imgur.com/5Xfwd0m.jpeg" /></td>
+       <td><img width="400px" align="left" src="https://imgur.com/7lfIQgj.jpeg" /></td>
+    </tr> 
+  </table>
+</center>
+
 
 
 - [x] Cart
+<center>
+  <table>
+    <tr>
+        <td><img width="400px" align="left" src="https://imgur.com/890od6O.jpeg" /></td>
+        <td><img width="400px" align="left" src="https://imgur.com/D7IeJNz.jpeg" /></td>
+    </tr> 
+  </table>
+</center>
+
 <img height="450" align="center" src="https://imgur.com/890od6O.jpeg" alt="projeto"/>
