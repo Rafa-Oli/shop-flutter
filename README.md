@@ -9,7 +9,15 @@
 
 - [x] *Login and Registration using animation (FadeTransition to use opacity and SliderTransition)*
 
-<img height="450" align="center" src="https://imgur.com/PlFGoae.jpeg" alt="projeto"/>  <img height="450" align="center" src="https://imgur.com/2tPiQUp.jpeg" alt="projeto"/> 
+<center>
+  <table>
+    <tr>
+        <td><img width="400px" align="left" src="https://imgur.com/PlFGoae.jpeg" /></td>
+        <td><img width="400px" align="left" src="https://imgur.com/2tPiQUp.jpeg" /></td>
+    </tr>  
+  </table>
+</center>
+
 
 - [x] *Store and product registration*
 
